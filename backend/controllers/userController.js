@@ -21,9 +21,15 @@ export const UpdateProfile = async (req,res) => {
         const updateData = {name, description}
         
         if(req.file){
-           const photoUrl = await uploadOnCloudinary(req.file.path)
-           if(photoUrl){
-               updateData.photoUrl = photoUrl
+           try {
+               const photoUrl = await uploadOnCloudinary(req.file.path)
+               console.log("photoUrl from cloudinary:", photoUrl)
+               if(photoUrl){
+                   updateData.photoUrl = photoUrl
+               }
+           } catch (uploadError) {
+               console.log("Upload error:", uploadError)
+               // Don't fail the update if upload fails
            }
         }
         
@@ -35,7 +41,7 @@ export const UpdateProfile = async (req,res) => {
         }
         return res.status(200).json(user)
     } catch (error) {
-         console.log(error);
+         console.log("Error in UpdateProfile:", error);
        return res.status(500).json({message:`Update Profile Error  ${error}`})
     }
 }

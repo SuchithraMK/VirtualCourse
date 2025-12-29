@@ -1,7 +1,7 @@
 import React from "react";
 import { FaStar } from "react-icons/fa6";
 import { FaRegStar } from "react-icons/fa";
-const ReviewCard = ({ text, name, image, rating, role }) => {
+const ReviewCard = ({ text, name, image, rating, role, courseTitle }) => {
   return (
     <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 max-w-sm w-full">
       {/* ⭐ Rating Stars */}
@@ -16,7 +16,10 @@ const ReviewCard = ({ text, name, image, rating, role }) => {
       </div>
 
       {/* 💬 Review Text */}
-      <p className="text-gray-700 text-sm mb-5">{text}</p>
+      <p className="text-gray-700 text-sm mb-3">{text}</p>
+
+      {/* 📚 Course Name */}
+      <p className="text-xs text-blue-600 font-medium mb-4">Course: {courseTitle}</p>
 
       {/* 👤 Reviewer Info */}
       <div className="flex items-center gap-3">

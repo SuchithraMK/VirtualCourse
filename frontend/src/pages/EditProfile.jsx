@@ -17,15 +17,14 @@ function EditProfile() {
      let [loading,setLoading] = useState(false)
      let navigate = useNavigate()
 
+     const updateProfile = async () => {
+      setLoading(true)
       const formData = new FormData()
       formData.append("name",name)
       formData.append("description",description)
-      formData.append("photoUrl",photoUrl)
-
-
-
-     const updateProfile = async () => {
-      setLoading(true)
+      if(photoUrl){
+        formData.append("photoUrl",photoUrl)
+      }
       try {
         const result = await axios.post(serverUrl + "/api/user/updateprofile" ,formData , {withCredentials:true} )
         console.log(result.data)

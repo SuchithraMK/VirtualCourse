@@ -26,7 +26,14 @@ export const createCourse = async (req,res) => {
 
 export const getPublishedCourses = async (req,res) => {
     try {
-        const courses = await Course.find({isPublished:true}).populate("lectures reviews")
+        const courses = await Course.find({isPublished:true}).populate("lectures").populate({
+            path: "reviews",
+            populate: {
+                path: "user",
+                select: "name photoUrl role"
+            }
+        })
+        console.log("Published courses found:", courses.length)
         return res.status(200).json(courses)
         
     } catch (error) {
@@ -38,7 +45,13 @@ export const getPublishedCourses = async (req,res) => {
 export const getCreatorCourses = async (req,res) => {
     try {
         const userId = req.userId
-        const courses = await Course.find({creator:userId}).populate('lectures').populate('enrolledStudents', 'name email')
+        const courses = await Course.find({creator:userId}).populate('lectures').populate('enrolledStudents', 'name email').populate({
+            path: 'reviews',
+            populate: {
+                path: 'user',
+                select: 'name photoUrl role'
+            }
+        })
         return res.status(200).json(courses)
         
     } catch (error) {
@@ -93,7 +106,13 @@ export const editCourse = async (req,res) => {
 export const getCourseById = async (req,res) => {
     try {
         const {courseId} = req.params
-        let course = await Course.findById(courseId)
+        let course = await Course.findById(courseId).populate('lectures').populate({
+            path: 'reviews',
+            populate: {
+                path: 'user',
+                select: 'name photoUrl role'
+            }
+        })
         if(!course){
             return res.status(404).json({message:"Course not found"})
         }
