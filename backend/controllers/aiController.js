@@ -23,7 +23,7 @@ export const searchWithAi = async (req, res) => {
       "c programming": ["c programming", "c language", "programming in c", "c lang", "learn c", "c course", "c tutorial", "ansi c", "turbo c"],
       "c++": ["c++", "cpp", "c plus plus", "cplusplus", "c++ programming", "learn cpp", "cpp course", "cpp tutorial", "object oriented c"],
       "c#": ["c#", "csharp", "c sharp", "c# programming", "learn c#", "csharp course", "dotnet", ".net"],
-      javascript: ["javascript", "js", "java script", "javascirpt", "javasript", "learn javascript", "js course", "ecmascript", "es6", "vanilla js"],
+      javascript: ["javascript", "js", "java script", "javascirpt", "javasript", "learn javascript", "js course", "ecmascript", "es6", "vanilla js", "JavaScript"],
       typescript: ["typescript", "ts", "type script", "learn typescript", "ts course", "typed javascript"],
       python: ["python", "py", "pyhton", "phyton", "python programming", "learn python", "python course", "pyton", "python3", "py3"],
       java: ["java", "java programming", "learn java", "java course", "core java", "advanced java"],
